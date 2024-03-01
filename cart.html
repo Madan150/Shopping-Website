@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9eff3e7d4f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="./assests/images/achieversit.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav fs-4 fw-bold ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html"><i class="fa-solid fa-bag-shopping fa-xl"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="cartContainer">
+
+    </div>
+    <div id="totalPrice">
+        <h4>Total Amount: <span id="totalAmount">0</span></h4>
+    </div>
+    <!-- <div id="grandTotalPrice" class="mt-3">
+        <h4>Grand Total: <span id="grandTotal">0</span></h4>
+    </div> -->
+    <script src="products.js"></script>
+
+    <!-- <script>
+        var myData = localStorage.getItem('myData');
+        var myDataObject = JSON.parse(myData);
+        // Assuming myDataObject is an array of items
+        if (myDataObject && Array.isArray(myDataObject)) {
+            var cartContainer = document.getElementById('cartContainer');
+    
+            // Loop through each item in myDataObject
+            myDataObject.forEach(function (item) {
+                // Create a container for each cart item
+                var cartItemContainer = document.createElement('div');
+                cartItemContainer.className = 'container rounded cart_items';
+    
+                // Set product name
+                var productName = document.createElement('h4');
+                productName.textContent = item.name;
+                cartItemContainer.appendChild(productName);
+    
+                // Set product image
+                var productImage = document.createElement('img');
+                productImage.src = item.img;
+                productImage.alt = 'Product Image';
+                cartItemContainer.appendChild(productImage);
+    
+                // Set total price
+                var totalPrice = document.createElement('h4');
+                totalPrice.textContent = 'Total Price: ' + item.price;
+                cartItemContainer.appendChild(totalPrice);
+    
+                // Set quantity
+                var quantityContainer = document.createElement('div');
+                var decreaseBtn = document.createElement('button');
+                decreaseBtn.textContent = '-';
+                var quantity = document.createElement('h6');
+                quantity.textContent = 'Quantity: ' + item.quantity;
+                var increaseBtn = document.createElement('button');
+                increaseBtn.textContent = '+';
+    
+                quantityContainer.appendChild(decreaseBtn);
+                quantityContainer.appendChild(quantity);
+                quantityContainer.appendChild(increaseBtn);
+                cartItemContainer.appendChild(quantityContainer);
+    
+                // Set remove button
+                var removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remove';
+                cartItemContainer.appendChild(removeBtn);
+    
+                // Append the cart item container to the cart container
+                cartContainer.appendChild(cartItemContainer);
+            });
+        }
+    </script> -->
+    <script>
+        var myData = localStorage.getItem('myData');
+        var myDataObject = JSON.parse(myData);
+        // Assuming myDataObject is an array of items
+        if (myDataObject && Array.isArray(myDataObject)) {
+            var cartContainer = document.getElementById('cartContainer');
+            var totalAmountElement = document.getElementById('totalAmount');
+            totalAmountElement.classList.add("totalAmountElement")
+            // var grandTotalElement = document.getElementById('grandTotal');
+            var totalAmount = 0;
+
+            // Function to update the cart display
+            function updateCartDisplay() {
+                // Clear the existing cart items
+                cartContainer.innerHTML = '';
+                // Reset total amount
+                totalAmount = 0;
+
+                // Loop through each item in myDataObject
+                myDataObject.forEach(function (item, index) {
+                    // Create a container for each cart item
+                    var cartItemContainer = document.createElement('div');
+                    cartItemContainer.className = 'container rounded cart_items';
+
+                    // Set product name
+                    var productName = document.createElement('h4');
+                    productName.textContent = item.name;
+                    cartItemContainer.appendChild(productName);
+
+                    // Set product image
+                    var productImage = document.createElement('img');
+                    productImage.src = item.img;
+                    productImage.alt = 'Product Image';
+                    cartItemContainer.appendChild(productImage);
+
+                    // Set total price
+                    var productPrice = document.createElement('h4');
+                    productPrice.textContent = 'Total Price: ' + item.price;
+                    cartItemContainer.appendChild(productPrice);
+
+                    // Set quantity
+                    var quantityContainer = document.createElement('div');
+                    quantityContainer.classList.add('quantityContainer')
+
+                    var decreaseBtn = document.createElement('button');
+                    decreaseBtn.classList.add('decreaseBtn')
+                    decreaseBtn.textContent = '-';
+                    var displayquantity = document.createElement('div');
+                    displayquantity.classList.add('quantityDisplay')
+
+                    var quantity = document.createElement('h6');
+                    quantity.classList.add('quantity')
+                    if (typeof item.quantity !== 'number' || isNaN(item.quantity)) {
+                        item.quantity = 1;
+                    }
+                    quantity.textContent = 'Quantity:' + item.quantity;
+                    var increaseBtn = document.createElement('button');
+                    increaseBtn.classList.add('increaseBtn')
+                    increaseBtn.textContent = '+';
+                    // let count=1
+
+                    decreaseBtn.addEventListener('click', () => {
+                        if (item.quantity > 1) {
+                            item.quantity--
+                            quantity.textContent = 'Quantity : ' + item.quantity;
+                            updateCartDisplay()
+                        }
+                    })
+                    increaseBtn.addEventListener('click', () => {
+                        item.quantity++;
+                        quantity.textContent = 'Quantity :' + item.quantity;
+                        updateCartDisplay()
+                    })
+                    // Update total amount
+                    totalAmount += item.price * item.quantity;
+
+
+                    quantityContainer.appendChild(decreaseBtn);
+                    quantityContainer.appendChild(quantity);
+                    quantityContainer.appendChild(increaseBtn);
+                    cartItemContainer.appendChild(quantityContainer);
+
+                    // Set remove button
+                    var removeBtn = document.createElement('button');
+                    removeBtn.classList.add('RemoveBtn')
+                    removeBtn.textContent = 'Remove';
+
+                    // Add an event listener to the remove button
+                    removeBtn.addEventListener('click', function () {
+                        // Remove the item from myDataObject
+                        myDataObject.splice(index, 1);
+                        // Update local storage with the modified data
+                        localStorage.setItem('myData', JSON.stringify(myDataObject));
+                        // Update the cart display
+                        updateCartDisplay();
+                    });
+
+
+                    cartItemContainer.appendChild(removeBtn);
+
+                    // Append the cart item container to the cart container
+                    cartContainer.appendChild(cartItemContainer);
+                });
+                // Update the total amount in the HTML
+                totalAmountElement.textContent = totalAmount;
+
+                // Display the grand total at the bottom
+                // grandTotalElement.textContent = totalAmount;
+            }
+
+            // Initial display of the cart
+            updateCartDisplay();
+        }
+    </script>
+
+
+</body>
+
+</html>

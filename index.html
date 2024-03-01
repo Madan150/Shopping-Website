@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign-Up Page</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://kit.fontawesome.com/9eff3e7d4f.js" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    body {
+        background-image: radial-gradient(white, rgb(244, 209, 213), rgb(247, 214, 219));
+    }
+</style>
+
+<body>
+    <div class="Form_Container" id="Form_Container">
+        <div id="page_Quote">
+            <h2 id="heading">
+                Give Your Workout A New Style
+            </h2>
+            <p>Success is't always about greatness. It's all about consistency.Consistent hard work gains
+                success.Greatness will come.</p>
+        </div>
+        <div class="grid_Data">
+            <div id="Left_image">
+                <img src="./assests/images/image1.png" alt="">
+            </div>
+            <div class="signForm">
+                <h1>Sign Up</h1>
+                <form action="" id="signupForm">
+                    <label for="signupUsername" id="input_icon">@</label>
+                    <input id="signupUsername" type="text" placeholder="Username" required><br>
+                    <label for="signupPassword" id="input_icon"><i class="fa-solid fa-lock"></i></label>
+                    <input id="signupPassword" type="password" placeholder="Password" required><br>
+                    <button id="button" type="button" onclick="signUp()">Sign Up</button>
+                </form>
+                <p>Don't have Account ?<a href="SignIn.html" onclick="toggleForm()">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="sign-In-Up.js"></script>
+</body>
+
+</html>

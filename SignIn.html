@@ -1,0 +1,136 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <title>Sign In/Sign Up</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <form id="signInForm">
+            <h2>Sign In</h2>
+            <label for="signinUsername">Username:</label>
+            <input type="text" id="signinUsername" name="signinUsername" required>
+            <label for="signinPassword">Password:</label>
+            <input type="password" id="signinPassword" name="signinPassword" required>
+            <button type="button" onclick="signIn()">Sign In</button>
+        </form>
+        <form id="signUpForm" style="display: none;">
+            <h2>Sign Up</h2>
+            <label for="signupUsername">Username:</label>
+            <input type="text" id="signupUsername" name="signupUsername" required>
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" name="signupPassword" required>
+            <button type="button" onclick="signUp()">Sign Up</button>
+        </form>
+        <p id="toggleText">Don't have an account? <a href="#" onclick="toggleForm()">Sign Up</a></p>
+    </div>
+    <script>
+        function signIn() {
+            const username = document.getElementById('signinUsername').value;
+            const password = document.getElementById('signinPassword').value;
+
+            // Retrieve user data from local storage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if the user exists
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                alert('Sign In Successful!');
+                // Add your logic to redirect or perform additional actions after sign-in
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        function signUp() {
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+
+            // Retrieve user data from local storage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if the username is already taken
+            if (users.some(u => u.username === username)) {
+                alert('Username already taken. Please choose another.');
+                return;
+            }
+
+            // Add the new user to the local storage
+            users.push({ username, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('Sign Up Successful! You can now sign in.');
+            toggleForm(); // Switch to the sign-in form after signing up
+        }
+
+        function toggleForm() {
+            const signInForm = document.getElementById('signInForm');
+            const signUpForm = document.getElementById('signUpForm');
+            const toggleText = document.getElementById('toggleText');
+
+            if (signInForm.style.display === 'none') {
+                signInForm.style.display = 'block';
+                signUpForm.style.display = 'none';
+                toggleText.innerHTML = "Don't have an account? <a href='#' onclick='toggleForm()'>Sign Up</a>";
+            } else {
+                signInForm.style.display = 'none';
+                signUpForm.style.display = 'block';
+                toggleText.innerHTML = 'Already have an account? <a href="#" onclick="toggleForm()">Sign In</a>';
+            }
+        }
+
+    </script>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign-In Page</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://kit.fontawesome.com/9eff3e7d4f.js" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    body {
+        background-image: radial-gradient(white, rgb(244, 209, 213), rgb(247, 214, 219));
+    }
+</style>
+<body>
+    <div class="Form_Container" id="Form_Container">
+        <div id="page_Quote">
+            <h2 id="heading">
+                Give Your Workout A New Style
+            </h2>
+            <p>Success is't always about greatness. It's all about consistency.Consistent hard work gains
+                success.Greatness will come.</p>
+        </div>
+        <div class="grid_Data">
+            <div id="Left_image">
+                <img src="./assests/images/image1.png" alt="">
+            </div>
+            <div class="signForm">
+                <h1>Sign In</h1>
+                <form action="" id="signInForm">
+                    <label for="signinUsername" id="input_icon">@</label>
+                    <input id="signinUsername" type="text" placeholder="Username" required><br>
+                    <label for="signinPassword" id="input_icon"><i class="fa-solid fa-lock"></i></label>
+                    <input id="signinPassword" type="password" placeholder="Password" required><br>
+                    <button id="button" type="button" onclick="signIn()">Sign In</button>
+                </form>
+                <p>Don't have Account ?<a href="signUp.html" onclick="toggleForm()">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="sign-In-Up.js"></script>
+</body>
+
+</html>
