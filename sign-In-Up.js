@@ -10,7 +10,7 @@ function signIn() {
 
     if (user) {
         alert('Sign In Successful!');
-        window.location.href = 'index.html';
+        window.location.href = 'Home.html';
         // Add your logic to redirect or perform additional actions after sign-in
     } else {
         alert('Invalid username or password');
